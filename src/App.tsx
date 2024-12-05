@@ -41,7 +41,7 @@ function App() {
           <div className="space-y-2">
             {todos.length === 0 ? (
               <p className="text-center text-gray-500 py-6">
-                No todos yet. Add one to get started!
+                No todos yet. Add one to get started!  created by "@ayoob.bhat"
               </p>
             ) : (
               todos.map(todo => (
