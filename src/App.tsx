@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import { TodoInput } from './components/TodoInput';
 import { TodoItem } from './components/TodoItem';
 import { Todo } from './types/todo';
 import { ClipboardList } from 'lucide-react';
+import { loadTodos, saveTodos } from './utils/storage';
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => loadTodos());
+
+  useEffect(() => {
+    saveTodos(todos);
+  }, [todos]);
 
   const addTodo = (text: string) => {
     const newTodo: Todo = {
@@ -41,7 +46,7 @@ function App() {
           <div className="space-y-2">
             {todos.length === 0 ? (
               <p className="text-center text-gray-500 py-6">
-                No todos yet. Add one to get started!  created by "@ayoob.bhat"
+                No todos yet. Add one to get started!
               </p>
             ) : (
               todos.map(todo => (
